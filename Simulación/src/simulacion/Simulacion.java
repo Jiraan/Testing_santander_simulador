@@ -157,6 +157,12 @@ public class Simulacion extends javax.swing.JFrame {
 
         jLabel11.setText("Datos de la vivienda");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, -1, -1));
+
+        campovalorpropiedad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campovalorpropiedadActionPerformed(evt);
+            }
+        });
         getContentPane().add(campovalorpropiedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 320, 280, 20));
 
         jLabel12.setText("Valor Propiedad (UF)");
@@ -168,10 +174,14 @@ public class Simulacion extends javax.swing.JFrame {
 
         jLabel14.setText("Monto del Financiamiento (UF)");
         getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 380, -1, -1));
+
+        campomontodelfinanciamiento.setEditable(false);
         getContentPane().add(campomontodelfinanciamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 380, 280, -1));
 
         jLabel15.setText("Porcentaje de Financiamiento (%)");
         getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 410, -1, -1));
+
+        campoporcentajedelfinanciamiento.setEditable(false);
         getContentPane().add(campoporcentajedelfinanciamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 410, 280, -1));
 
         jLabel16.setText("Plazo del Crédito (Años)");
@@ -225,40 +235,11 @@ public class Simulacion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_combocomunaActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Simulacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Simulacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Simulacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Simulacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void campovalorpropiedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campovalorpropiedadActionPerformed
+        System.out.println("Pico");
+    }//GEN-LAST:event_campovalorpropiedadActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Simulacion().setVisible(true);
-            }
-        });
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonsimular;
