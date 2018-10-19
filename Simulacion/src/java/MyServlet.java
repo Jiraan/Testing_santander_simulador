@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 
+import MODEL.Banco;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,17 +33,19 @@ public class MyServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
+        Banco banco = new Banco();
+        Persona persona = new Persona();
+        
+        banco.setAporte_C(Integer.parseInt(request.getParameter("pie")));
+        banco.setValor_P(Integer.parseInt(request.getParameter("valorPropiedad")));
+        
+        request.setAttribute("Banco", banco);
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet MyServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet MyServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            RequestDispatcher a = request.getRequestDispatcher("index.jsp");
+            a.forward(request, response);
+            
         }
     }
 

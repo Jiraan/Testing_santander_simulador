@@ -1,3 +1,4 @@
+<%@page import= " MODEL.Banco " %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <link href="css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="js/bootstrap.min.js"></script>
@@ -39,10 +40,10 @@
     <!-- Modal content-->
     <div class="modal-content text-center">
       <div class="modal-header ">
-        <h4 class="modal-title text-center">Simulación exitosa</h4>
+        <h4 class="modal-title text-center">Simulación en curso</h4>
       </div>
       <div class="modal-body">
-        <p>Tu simulacion no a sido guardada por q la wea de programa no hace nada.</p>
+        <p>Tu simulacion está siendo procesada...</p>
       </div>
       <div class="modal-footer">
         <button onclick="limpiar();"  type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
@@ -55,7 +56,7 @@
 			<div class="row main">
 				<div class="main-login main-center">
 				<h5>Simulador de Credito</h5>
-					<form class="" method="post" action="#">
+					<form class="" method="POST" action="MyServlet">
 						
 						<div class="form-group">
 							<label for="rut" class="cols-sm-2 control-label">Rut</label>
@@ -128,14 +129,21 @@
                                                             
                                                           </select>
                                             <div class="form-group">
-							<label for="valorPropiedad" class="cols-sm-2 control-label">Valor Propiedad</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="username" id="valorPropiedad"  placeholder="Ingrese Valor Propiedad"/>
-								</div>
-							</div>
-						</div>
+    <label for="valorPropiedad" class="cols-sm-2 control-label">Valor Propiedad</label>
+    <div class="cols-sm-10">
+        <div class="input-group">
+          <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+            <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+            <input type="text" class="form-control" name="valorPropiedad" id="valorPropiedad"  placeholder="Ingrese Valor Propiedad"/>
+          </div>
+          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <button  style="margin-bottom:20px;" type="submit" >Simular</button>
+          </div>
+        </div>
+    </div>
+</div>
+
+
                                             <div class="form-group">
 							<label for="pie" class="cols-sm-2 control-label">Aporte contado o pie</label>
 							<div class="cols-sm-10">
@@ -145,24 +153,62 @@
 								</div>
 							</div>
 						</div>
-                                                <div class="form-group">
+                                                    
+                                                     <%
+                                                    Banco banco = new Banco();
+                                                    banco= (Banco)request.getAttribute("Banco");
+                                                    String div="";
+                                                    if(banco!= null)
+                                                    {
+                                                        div =  "<input type=\"text\" class=\"form-control\" name=\"posentajeFinanciamiento\" id=\"PorsentajeFinanciamiento\"  placeholder=\"\" disabled value = \""+banco.montoFinanciamiento()+"\"/>";
+                                                        out.println(" <label>Monto Financiamiento</label>" + div);
+                                                        
+                                                        
+                                                        /*div =  "<input type=\"text\" class=\"form-control\" name=\"posentajeFinanciamiento\" id=\"PorsentajeFinanciamiento\"  placeholder=\"\" disabled value = \""+banco.porcentaje()+"%\"/>";
+                                                        out.println(" <label>Porcentaje Financiamiento</label>" + div);*/
+                                                    }else
+                                                    {
+                                                        div =  "<input type=\"text\" class=\"form-control\" name=\"posentajeFinanciamiento\" id=\"PorsentajeFinanciamiento\"  placeholder=\"\" disabled value = \""+0+"\"/>";
+                                                        out.println(" <label>Monto Financiamiento</label>" + div);
+                                                    }
+                                                   
+                                                    %>
+                                               <!-- <div class="form-group">
 							<label for="montoFinanciamiento" class="cols-sm-2 control-label">Monto de financiamiento</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                                                        <input type="text" class="form-control"  name="name" id="montoFinanciamenti"  placeholder="" disabled/>
+                                                                        <input type="text" class="form-control"  name="montoFinanciamiento" id="montoFinanciamenti"  placeholder="" disabled/>
 								</div>
 							</div>
-						</div>
-                                                 <div class="form-group">
+						</div>-->
+                                                    <%
+                                                    
+                                                    banco= (Banco)request.getAttribute("Banco");
+                                                    
+                                                    if(banco!= null)
+                                                    {
+                                                        div =  "<input type=\"text\" class=\"form-control\" name=\"posentajeFinanciamiento\" id=\"PorsentajeFinanciamiento\"  placeholder=\"\" disabled value = \""+banco.porcentaje()+"\"/>";
+                                                        out.println(" <label>Porcentaje Financiamiento</label>" + div);
+                                                        /*div =  "<input type=\"text\" class=\"form-control\" name=\"posentajeFinanciamiento\" id=\"PorsentajeFinanciamiento\"  placeholder=\"\" disabled value = \""+banco.porcentaje()+"%\"/>";
+                                                        out.println(" <label>Porcentaje Financiamiento</label>" + div);*/
+                                                    }else
+                                                    {
+                                                        div =  "<input type=\"text\" class=\"form-control\" name=\"posentajeFinanciamiento\" id=\"PorsentajeFinanciamiento\"  placeholder=\"\" disabled value = \""+0+"\"/>";
+                                                        out.println(" <label>Porcentaje Financiamiento</label>" + div);
+                                                    }
+                                                   
+                                                    %>
+                                                
+                                                <!--<div class="form-group">
 							<label for="posentajeFinanciamiento" class="cols-sm-2 control-label">Porcentaje de Financiamiento</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="name" id="PorsentajeFinanciamiento"  placeholder="" disabled/>
+									<input type="text" class="form-control" name="posentajeFinanciamiento" id="PorsentajeFinanciamiento"  placeholder="" disabled/>
 								</div>
 							</div>
-						</div>
+						</div>-->
                                                     <label for="sel1">Seleccione plazo del credito(años):</label>
                                                           <select class="form-control" id="sel1">
                                                             <option>1</option>
@@ -206,9 +252,11 @@
                                                 </div>
 
 						<div class="form-group ">
-                                                    <button  type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Simular</button>
+                                                    <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" value="Finalizar simulación"></input>
 						</div>
                                                     
+                                                    
+                                               
 						
 					</form>
 				</div>
